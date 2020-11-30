@@ -2,6 +2,9 @@ import express, { json, urlencoded } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
+//Config
+import config from './config/config';
+
 //Routes
 import userRoutes from './routes/user';
 
@@ -14,12 +17,10 @@ app.use(cors());
 //Definition of routes
 app.use('/user', userRoutes)
 
-const CONNECTION_URL = 'mongodb://localhost/eCommerce';
-const PORT = process.env.PORT || 5000;
 
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(`${config.MONGO_URL}/${config.DATABASE}`, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(()=>{
-    app.listen(PORT, ()=> console.log(`Sever running on PORT ${PORT}`));
+    app.listen(config.PORT, ()=> console.log(`Sever running on PORT ${config.PORT}`));
   })
   .catch((error)=>{
     console.log(`Error en conección a bd: ${error.message}`)
