@@ -7,6 +7,7 @@ import config from './config/config';
 
 //Routes
 import userRoutes from './routes/user';
+import productRoutes from './routes/product';
 
 const app = express();
 
@@ -15,7 +16,8 @@ app.use(urlencoded({limit: '30mb', extended: true}));
 app.use(cors());
 
 //Definition of routes
-app.use('/user', userRoutes)
+app.use('/user', userRoutes);
+app.use('/product', productRoutes);
 
 
 mongoose.connect(`${config.MONGO_URL}/${config.DATABASE}`, { useNewUrlParser: true, useUnifiedTopology: true })
