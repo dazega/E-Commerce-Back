@@ -9,9 +9,14 @@ const productSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  images: [String],
   name: {
     type: String,
     required: true
+  },
+  activeProduct:{
+    required: true,
+    type: Boolean
   },
   stock: {
     type: Number,
